@@ -1,0 +1,16 @@
+body{
+	background-color:#f2e6ff
+}
+#div_CenterDiv{
+	background-color:white;
+	width:80%;
+	height:90%;
+	border: 1px solid black;
+}
+#Generate{
+	width:200px;
+}
+table{
+	text-align:left;
+	width:800px;
+}

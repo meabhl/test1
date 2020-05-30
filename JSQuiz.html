@@ -1,0 +1,148 @@
+<html>
+	<head>
+		<title>
+			ML Code
+		</title>
+		<link rel="stylesheet" type="text/css" href="JSQuiz_Style.css">
+	</head>
+	<body>
+	<center>
+		<h1>JS Quiz</h1>
+		
+		<div id="div_CenterDiv">
+			<table id="tbl_Question">
+				<tr>
+					<td>
+						What does HTML stand for?
+					</td>
+				</tr>
+				<tr>
+					<td><div id="Q1_0" name="div_Question1"><input type="radio" id="Question_One" name="Question_One" onClick="fn_SelectAnswer('Q1_0', this.value, 1);" value="Happy">Happy Terrific Magnificent Language</div></td>
+				</tr>
+				<tr>
+					<td><div id="Q1_1" name="div_Question1"><input type="radio" id="Question_One" name="Question_One" onClick="fn_SelectAnswer('Q1_1', this.value, 1);" value="Hyper">Hyper Text Markup Language</div></td>
+				</tr>
+				<tr>
+					<td><div id="Q1_2" name="div_Question1"><input type="radio" id="Question_One" name="Question_One" onClick="fn_SelectAnswer('Q1_2', this.value, 1);" value="Human">Human text Manual language</div></td>
+				</tr>
+			</table>
+			<table id="tbl_Question">
+				<tr>
+					<td>
+						What technology do web developers use to change the way a web page looks?
+					</td>
+				</tr>
+				<tr>
+					<td><div id="Q2_0" name="div_Question2"><input type="radio" id="Question_Two" name="Question_Two" onClick="fn_SelectAnswer('Q2_0', this.value, 2);" value="HTML">HTML</div></td>
+				</tr>
+				<tr>
+					<td><div id="Q2_1" name="div_Question2"><input type="radio" id="Question_Two" name="Question_Two" onClick="fn_SelectAnswer('Q2_1', this.value, 2);" value="CSS">CSS</div></td>
+				</tr>
+				<tr>
+					<td><div id="Q2_2" name="div_Question2"><input type="radio" id="Question_Two" name="Question_Two" onClick="fn_SelectAnswer('Q2_2', this.value, 2);" value="Javascript">Javascript</div></td>
+				</tr>
+				<tr>
+					<td><div id="Q2_3" name="div_Question2"><input type="radio" id="Question_Two" name="Question_Two" onClick="fn_SelectAnswer('Q2_3', this.value, 2);" value="Java">Java</div></td>
+				</tr>
+			</table>
+			<table id="tbl_Question">
+				<tr>
+					<td>
+						What is the &#60;a&#62; tag used for?
+					</td>
+				</tr>
+				<tr>
+					<td><div id="Q3_0" name="div_Question3"><input type="radio" id="Question_Three" name="Question_Three" onClick="fn_SelectAnswer('Q3_0', this.value, 3);" value="Links">This is used for adding links to a web page</div></td>
+				</tr>
+				<tr>
+					<td><div id="Q3_1" name="div_Question3"><input type="radio" id="Question_Three" name="Question_Three" onClick="fn_SelectAnswer('Q3_1', this.value, 3);" value="Images">This is used for adding images to a web page</div></td>
+				</tr>
+				<tr>
+					<td><div id="Q3_2" name="div_Question3"><input type="radio" id="Question_Three" name="Question_Three" onClick="fn_SelectAnswer('Q3_2', this.value, 3);" value="Style">The a tag is used to style our web pages</div></td>
+				</tr>
+				<tr>
+					<td><div id="Q3_3" name="div_Question3"><input type="radio" id="Question_Three" name="Question_Three" onClick="fn_SelectAnswer('Q3_3', this.value, 3);" value="Heading">The a tag is used to add in a heading.</div></td>
+				</tr>
+			</table><br>
+			<input type="button" id="Generate" value="Score Quiz" onclick="fn_ScoreQuiz();">
+			<div id="div_Results"></div>
+		</div>
+		</center>
+	</body>
+</html>
+<script type="text/javascript">
+//************************************************************************
+// JavaScript Library   : 
+//************************************************************************
+// *****
+// * Coded By: Meabh Landers
+// * Version: 1.0
+// * Date: 2017-07-13
+// *****
+//***********************************************************************
+// JavaScript Library   : Function Definitions
+//***********************************************************************
+// *****
+// function fn_SelectAnswer(){
+//
+//***********************************************************************
+// Functions
+//***********************************************************************
+var aryGlb_Answers											= ['Hyper','CSS','Links'];
+//***********************************************************************
+// Application   : 
+//***********************************************************************
+//go through each question, select answer, immediately get told if it's 
+//right or wrong
+function fn_SelectAnswer(intQuestion_Id, strOption, intQuestion_Num){
+	fn_MarkAllWhite(intQuestion_Num);
+	document.getElementById(intQuestion_Id).style.backgroundColor = '#e5e5ff';
+}
+
+function fn_MarkAllWhite(intQuestion_Num){
+	var List_Answers = document.getElementsByName('div_Question' + intQuestion_Num);
+	
+	for(var i = 0; i < List_Answers.length; i++){
+		List_Answers[i].style.backgroundColor = '#FFFFFF';
+	}
+}
+
+function fn_ScoreQuiz(){
+	var Question_One = document.getElementsByName('Question_One');
+	var Question_Two = document.getElementsByName('Question_Two');
+	var Question_Three = document.getElementsByName('Question_Three');
+	var intCounter = 0;
+	var intTotal = 3;
+	var strAnswers = '';
+	
+	//Question one
+	for(var i = 0; i < Question_One.length; i++){
+		if(Question_One[i].checked == true){
+			if(aryGlb_Answers[0] == Question_One[i].value){
+				intCounter++;
+			}
+		}
+	}
+	
+	//Question 2
+	for(var i = 0; i < Question_Two.length; i++){
+		if(Question_Two[i].checked == true){
+			if(aryGlb_Answers[1] == Question_Two[i].value){
+				intCounter++;
+			}
+		}
+	}
+	
+	//Question 3
+	for(var i = 0; i < Question_Three.length; i++){
+		if(Question_Three[i].checked == true){
+			if(aryGlb_Answers[2] == Question_Three[i].value){
+				intCounter++;
+			}
+		}
+	}
+	
+	strAnswers = 'You have scored ' + intCounter + ' out of ' + intTotal;
+	document.getElementById('div_Results').innerHTML = strAnswers;
+}
+</script>
